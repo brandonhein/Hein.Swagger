@@ -7,7 +7,7 @@ namespace Hein.Swagger.Aws
 {
     public static class SwaggerGenOptionsExtensions
     {
-        public static void EnforceApiKey(this SwaggerGenOptions options)
+        public static void EnforceAwsApiKey(this SwaggerGenOptions options)
         {
             var scheme = new HeaderSecurityScheme("x-api-key", "AWS API Gateway x-api-key");
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
