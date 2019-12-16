@@ -28,7 +28,7 @@ namespace Hein.Swagger
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
 
-        public static void GithubRepository(this SwaggerGenOptions options, string githubRepositoryUrl)
+        public static void AddGithubRepository(this SwaggerGenOptions options, string githubRepositoryUrl)
         {
             options.DocumentFilter<GithubRepositoryDocumentFilter>(githubRepositoryUrl);
         }

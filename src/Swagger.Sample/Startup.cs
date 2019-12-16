@@ -34,7 +34,7 @@ namespace Hein.Swagger.Sample
                     Description = "this is the description. [this is a link like github](https://github.com/brandonhein)"
                 });
 
-                x.GithubRepository("https://github.com/brandonhein/Hein.Swagger");
+                x.AddGithubRepository("https://github.com/brandonhein/Hein.Swagger");
                 x.EnforceHeaderKey("x-api-key", "AWS API Gateway x-api-key");
 
                 x.DescribeAllEnumsAsStrings();
