@@ -40,7 +40,7 @@ services.AddSwaggerGen(x =>
 }
 ```
 
-### Include/Exclude Controllers from Swagger Gen
+### Include/Exclude Controllers and/or Actions from Swagger Gen
 I recently deployed an application that served as both a UI and API... I wanted to document the API piece for the app, without having swagger generate documentation of the UI controllers and action.  I honestly thought there was something more 'swagger' for an attribute to use other than `ApiExplorerSettingsAttribute` and setting the `IgnoreApi` boolean.  So I added these attributes to 'swagger-ize' your code base up a bit more. Enjoy :smile:
 
 To tell Swagger Gen this controller can be swaggerized:
