@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Hein.Swagger.Aws</AssemblyName>
+    <RootNamespace>Hein.Swagger.Aws</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Swagger\Swagger.csproj" />
+  </ItemGroup>
+
+</Project>
