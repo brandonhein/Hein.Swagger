@@ -2,6 +2,9 @@
 using Hein.Swagger.Security.Keys;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
+using System.Linq;
+using System.Net;
 
 namespace Hein.Swagger
 {
@@ -31,6 +34,22 @@ namespace Hein.Swagger
         public static void AddGithubRepository(this SwaggerGenOptions options, string githubRepositoryUrl)
         {
             options.DocumentFilter<GithubRepositoryDocumentFilter>(githubRepositoryUrl);
+        }
+
+        public static void DescribeStatusCodes(this SwaggerGenOptions options, params HttpStatusCode[] codes)
+        {
+            options.OperationFilter<SwaggerStatusCodeResponses>(codes);
+        }
+
+        public static void DescribeStandardStatusCodes(this SwaggerGenOptions options)
+        {
+            DescribeStatusCodes(options, HttpStatusCode.OK, HttpStatusCode.InternalServerError, HttpStatusCode.ServiceUnavailable);
+        }
+
+        public static void DescribeAllStatusCodes(this SwaggerGenOptions options)
+        {
+            var values = Enum.GetValues(typeof(HttpStatusCode)).Cast<HttpStatusCode>();
+            DescribeStatusCodes(options, values.ToArray());
         }
     }
 }
