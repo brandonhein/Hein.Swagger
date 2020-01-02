@@ -38,7 +38,11 @@ namespace Hein.Swagger.Sample
                 x.AddGithubRepository("https://github.com/brandonhein/Hein.Swagger");
                 x.EnforceHeaderKey("x-api-key", "AWS API Gateway x-api-key");
 
-                x.DescribeStatusCodes(HttpStatusCode.InternalServerError);
+                //x.DescribeStatusCodes(HttpStatusCode.InternalServerError);
+                x.DescribeRateLimitHeaders();
+
+                x.DescribeCustomTags();
+
                 x.DescribeAllEnumsAsStrings();
             });
         }

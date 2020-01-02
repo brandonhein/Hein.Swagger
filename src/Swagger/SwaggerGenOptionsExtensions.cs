@@ -51,5 +51,15 @@ namespace Hein.Swagger
             var values = Enum.GetValues(typeof(HttpStatusCode)).Cast<HttpStatusCode>();
             DescribeStatusCodes(options, values.ToArray());
         }
+
+        public static void DescribeRateLimitHeaders(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<SwaggerRateLimitHeaders>();
+        }
+
+        public static void DescribeCustomTags(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<SwaggerTagOperationalFilter>();
+        }
     }
 }
