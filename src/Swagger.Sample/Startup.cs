@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Net;
+using System.Collections.Generic;
 
 namespace Hein.Swagger.Sample
 {
@@ -38,10 +39,7 @@ namespace Hein.Swagger.Sample
                 x.AddGithubRepository("https://github.com/brandonhein/Hein.Swagger");
                 x.EnforceHeaderKey("x-api-key", "AWS API Gateway x-api-key");
 
-                //x.DescribeStatusCodes(HttpStatusCode.InternalServerError);
-                x.DescribeRateLimitHeaders();
-
-                x.DescribeCustomTags();
+                x.EnableControllerTags();
 
                 x.DescribeAllEnumsAsStrings();
             });

@@ -3,6 +3,7 @@ using Hein.Swagger.Security.Keys;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -57,9 +58,9 @@ namespace Hein.Swagger
             options.OperationFilter<SwaggerRateLimitHeaders>();
         }
 
-        public static void DescribeCustomTags(this SwaggerGenOptions options)
+        public static void EnableControllerTags(this SwaggerGenOptions options)
         {
-            options.OperationFilter<SwaggerTagOperationalFilter>();
+            options.OperationFilter<SwaggerControllerGroupTagOperationalFilter>();
         }
     }
 }
