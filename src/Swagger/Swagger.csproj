@@ -4,6 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Hein.Swagger</AssemblyName>
     <RootNamespace>Hein.Swagger</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>brandonhein</Authors>
+    <Description>Custom Swashbuckle.AspNetCore.SwaggerGen extensions</Description>
+    <RepositoryUrl>https://github.com/brandonhein/Hein.Swagger</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/brandonhein/Hein.Swagger</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
