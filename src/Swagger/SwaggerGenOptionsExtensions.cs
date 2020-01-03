@@ -61,5 +61,22 @@ namespace Hein.Swagger
         {
             options.OperationFilter<SwaggerControllerGroupTagOperationalFilter>();
         }
+
+        public static void EnableDescriptionTags(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<SwaggerDescriptionFilter>();
+        }
+
+        public static void EnableSummaryTags(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<SwaggerSummaryFilter>();
+        }
+
+        public static void EnableAnnotations(this SwaggerGenOptions options)
+        {
+            EnableControllerTags(options);
+            EnableDescriptionTags(options);
+            EnableSummaryTags(options);
+        }
     }
 }

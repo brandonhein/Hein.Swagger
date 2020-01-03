@@ -8,6 +8,8 @@ namespace Hein.Swagger.Filters
     {
         public void Apply(Operation operation, OperationFilterContext context)
         {
+            operation.Responses.Add("429", new Response { Description = "Too Many Requests" });
+
             foreach (var response in operation.Responses)
             {
                 if (response.Value.Headers == null)

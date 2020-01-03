@@ -13,13 +13,15 @@ namespace Hein.Swagger.Sample.Controllers
         [ProducesResponseType(typeof(SampleModel), 200)]
         public IActionResult Get()
         {
-            return Ok(new SampleModel() { DateTime = DateTime.Now, Name = "sample-item", Version = 1 });
+            return Ok(new SampleModel() { DateTime = DateTime.Now, Name = "sample-item", Version = new Random().Next() });
         }
 
         [HttpPost]
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(SampleModel), 200)]
+        [Description("Post Description")]
+        [Summary("Ope")]
         public IActionResult Post([FromBody] SampleModel model)
         {
             return Ok(model);
