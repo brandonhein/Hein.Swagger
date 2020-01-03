@@ -2,7 +2,7 @@
 
 namespace Hein.Swagger.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class SwaggerDescriptionAttribute : Attribute
     {
         public SwaggerDescriptionAttribute(string description)

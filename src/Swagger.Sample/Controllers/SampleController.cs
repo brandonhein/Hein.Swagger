@@ -5,6 +5,7 @@ using System;
 namespace Hein.Swagger.Sample.Controllers
 {
     [SwaggerController("LookMom")]
+    [Description("look ma... no hands!")]
     [Route("Sample")]
     public class SampleController : Controller
     {

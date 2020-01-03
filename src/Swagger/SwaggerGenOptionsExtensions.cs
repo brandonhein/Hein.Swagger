@@ -65,6 +65,9 @@ namespace Hein.Swagger
         public static void EnableDescriptionTags(this SwaggerGenOptions options)
         {
             options.OperationFilter<SwaggerDescriptionFilter>();
+
+            //TODO ISSUE/FEATURE #1
+            //options.DocumentFilter<SwaggerControllerDescriptionFilter>();
         }
 
         public static void EnableSummaryTags(this SwaggerGenOptions options)
