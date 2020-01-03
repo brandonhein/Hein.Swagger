@@ -3,7 +3,6 @@ using Hein.Swagger.Security.Keys;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
