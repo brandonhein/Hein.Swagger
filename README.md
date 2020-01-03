@@ -10,6 +10,7 @@ So, I added some extension methods to add to the `SwaggerGenOptions` to achieve 
 * [Enforce API Keys](https://github.com/brandonhein/Hein.Swagger#enforce-api-keys)
 * [Include/Exclude Controllers](https://github.com/brandonhein/Hein.Swagger#includeexclude-controllers-andor-actions-from-swagger-gen)
 * [Group Controllers via Attribute](https://github.com/brandonhein/Hein.Swagger#group-your-controllers-with-an-attribute)
+* [Use Description and Summary Attributes](https://github.com/brandonhein/Hein.Swagger/blob/master/README.md#description-and-summary-attributes-so-long-xml-comments)
 
 ### Add Github Repository Url
 There are times you want to marry up your github repository/code base with your live working app.  So that developers can see your masterpiece.  This extension will create an 'externalDocs' section in your swagger json, and will create a link in your UI.
