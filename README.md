@@ -55,3 +55,20 @@ To tell Swagger Gen this controller should be excluded from being swaggerized:
 public class ExcludeController : Controller
 { }
 ```
+
+### Group your Controllers with an Attribute!!!
+I have an application that did location lookup... Each controller had a 'Route' that started with 'Lookup'... So I wanted to group them all together. I was amazed there's no good way to do this per the documentation.  I saw here [stackoverflow post]( https://stackoverflow.com/questions/34175018/grouping-of-api-methods-in-documentation-is-there-some-custom-attribute), you have to use a an attribute tag on each method... thats stupid.  So I figured out how to make it controller specific
+
+Implementation:
+```csharp
+services.AddSwaggerGen(x =>
+{
+   x.EnableControllerTags();
+}
+```
+```csharp
+[SwaggerController("LookMom")]
+public class SampleController : Controller
+{ }
+```
+![](/.images/controller-grouping-example.PNG)
