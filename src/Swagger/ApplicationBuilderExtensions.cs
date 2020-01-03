@@ -14,5 +14,20 @@ namespace Hein.Swagger
         {
             return app.UseMiddleware<EnableCorsMiddleware>();
         }
+
+        public static IApplicationBuilder UseXResponseTime(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<XResponseTimeMiddleware>();
+        }
+
+        public static IApplicationBuilder UseResponseTiming(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<XResponseTimeMiddleware>();
+        }
+
+        public static IApplicationBuilder EnableResponseTiming(this IApplicationBuilder app)
+        {
+            return app.UseMiddleware<XResponseTimeMiddleware>();
+        }
     }
 }

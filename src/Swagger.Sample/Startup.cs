@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Net;
 using System.Collections.Generic;
+using Hein.Swagger.Middleware;
 
 namespace Hein.Swagger.Sample
 {
@@ -48,6 +49,8 @@ namespace Hein.Swagger.Sample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseResponseTiming();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
