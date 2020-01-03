@@ -21,7 +21,7 @@ namespace Hein.Swagger.Middleware
                 watch.Stop();
                 var responseTimeForCompleteRequest = watch.ElapsedMilliseconds;
 
-                context.Response.Headers["X-Response-Time"] = responseTimeForCompleteRequest.ToString();
+                context.Response.Headers["X-Response-Time"] = string.Concat(responseTimeForCompleteRequest, "ms");
                 return Task.CompletedTask;
             });
 
