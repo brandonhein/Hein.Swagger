@@ -36,6 +36,7 @@ services.AddSwaggerGen(x =>
    x.EnforceCookieKey("cookieKey", "Your Cookie Access Key");
 }
 ```
+![](/.images/enforce-api-key2.PNG)  
 ***Bonus for AWS API Gateway enforcers***  
 Implementation:
 ```csharp
@@ -77,3 +78,27 @@ public class SampleController : Controller
 { }
 ```
 ![](/.images/controller-grouping-example.PNG)
+
+### Description and Summary Attributes (so long xml comments)
+When I saw I needed to include xml comments to help with description of my API's, I was appalled. I've already put all these attributes on my Actions... might as well keep it some what clean with more attributes.  Inspired by `Swashbuckle.AspNetCore.Annotations` I did a similar. :stuck_out_tongue:  
+
+Implementation:
+```csharp
+services.AddSwaggerGen(x =>
+{
+   x.EnableAnnotations();
+}
+```
+```csharp
+[HttpPost]
+[Consumes("application/json")]
+[Produces("application/json")]
+[ProducesResponseType(typeof(SampleModel), 200)]
+[Description("Post Description")]
+[Summary("Ope")]
+public IActionResult Post([FromBody] SampleModel model)
+{
+   return Ok(model);
+}
+```
+![](/.images/example-of-description-and-summary.PNG)
