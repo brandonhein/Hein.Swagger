@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace Hein.Swagger.Sample.Contorllers
+namespace Hein.Swagger.Sample.Controllers
 {
-    [Swagger]
-    [Tag("LookMom")]
+    [SwaggerController("LookMom")]
     [Route("Sample")]
     public class SampleController : Controller
     {

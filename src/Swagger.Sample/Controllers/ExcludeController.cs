@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace Hein.Swagger.Sample.Contorllers
+namespace Hein.Swagger.Sample.Controllers
 {
     [ExcludeFromSwagger]
     [Route("Exclude")]

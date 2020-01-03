@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Hein.Swagger.Sample.Contorllers
+namespace Hein.Swagger.Sample.Controllers
 {
     public class HomeController : Controller
     {
