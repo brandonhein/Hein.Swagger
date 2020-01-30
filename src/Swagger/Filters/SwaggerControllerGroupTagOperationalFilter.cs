@@ -24,8 +24,6 @@ namespace Hein.Swagger.Filters
                     tags.Remove(name);
                     operation.Tags = tags;
                 }
-
-                context.ApiDescription.GroupName = attr.TagName;
             }
         }
     }
