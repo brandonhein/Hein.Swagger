@@ -1,4 +1,13 @@
 # Hein.Swagger
+
+### NuGet Information
+[Hein.Swagger](https://www.nuget.org/packages/Hein.Swagger/)   
+![NuGet](https://img.shields.io/nuget/v/Hein.Swagger.svg?style=flat-square&label=nuget)
+
+```xml
+<PackageReference Include="Hein.Swagger" Version="1.0.1" />
+```
+
 Fun Repo to create an easier 'Swagger Gen' for api documentation
 
 I wanted to create some helper/extensions/add on's to the awesomeness of [SwaggerGen](https://github.com/swagger-api/swagger-codegen).  I found it difficult to add/implement security keys, and other cool documentation to my api's swagger. (because I really didn't read the documentation, but who ever does :wink:).
