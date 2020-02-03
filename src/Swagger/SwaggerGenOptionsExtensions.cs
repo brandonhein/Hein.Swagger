@@ -70,6 +70,11 @@ namespace Hein.Swagger
             //options.DocumentFilter<SwaggerControllerDescriptionFilter>();
         }
 
+        public static void EnableProducesHeaderTags(this SwaggerGenOptions options)
+        {
+            options.OperationFilter<SwaggerProducesHeadersFilter>();
+        }
+
         public static void EnableSummaryTags(this SwaggerGenOptions options)
         {
             options.OperationFilter<SwaggerSummaryFilter>();
@@ -80,6 +85,7 @@ namespace Hein.Swagger
             EnableControllerTags(options);
             EnableDescriptionTags(options);
             EnableSummaryTags(options);
+            EnableProducesHeaderTags(options);
         }
     }
 }
