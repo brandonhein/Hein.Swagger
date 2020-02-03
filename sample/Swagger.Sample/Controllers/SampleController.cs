@@ -20,6 +20,8 @@ namespace Hein.Swagger.Sample.Controllers
         [HttpPost]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [ProducesHeader("x-collection-count", typeof(int), "sample response header")]
+        [ProducesHeader("x-another-count", typeof(string), "another header attribute")]
         [ProducesResponseType(typeof(SampleModel), 200)]
         [Description("Post Description")]
         [Summary("Ope")]

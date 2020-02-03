@@ -11,7 +11,7 @@ namespace Hein.Swagger.Sample.Controllers
         [HttpDelete]
         [Produces("application/json")]
         [ProducesResponseType(typeof(SampleModel), 200)]
-        public IActionResult Get()
+        public IActionResult Delete()
         {
             return Ok(new SampleModel() { DateTime = DateTime.Now, Name = "sample-item", Version = 1 });
         }
@@ -20,7 +20,7 @@ namespace Hein.Swagger.Sample.Controllers
         [Consumes("application/json")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(SampleModel), 200)]
-        public IActionResult Post([FromBody] SampleModel model)
+        public IActionResult Put([FromBody] SampleModel model)
         {
             return Ok(model);
         }
