@@ -1,4 +1,5 @@
-﻿using Hein.Swagger.Filters;
+﻿using Hein.Swagger.Attributes;
+using Hein.Swagger.Filters;
 using Hein.Swagger.Security.Keys;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -86,6 +87,21 @@ namespace Hein.Swagger
             EnableDescriptionTags(options);
             EnableSummaryTags(options);
             EnableProducesHeaderTags(options);
+        }
+
+        public static void EnableSwaggerVersioning(this SwaggerGenOptions options)
+        {
+            options.DocumentFilter<SwaggerVersionDocumentFilter>();
+
+            options.DocInclusionPredicate((version, desc) =>
+            {
+                var versions = desc.ControllerAttributes()
+                    .OfType<SwaggerVersionAttribute>()
+                    .SelectMany(attr => attr.Version)
+                    .ToArray();
+
+                return new string(versions) == version;
+            });
         }
     }
 }
