@@ -19,9 +19,9 @@ So, I added some extension methods to add to the `SwaggerGenOptions` to achieve 
 * [Enforce API Keys](https://github.com/brandonhein/Hein.Swagger#enforce-api-keys)
 * [Include/Exclude Controllers](https://github.com/brandonhein/Hein.Swagger#includeexclude-controllers-andor-actions-from-swagger-gen)
 * [Group Controllers via Attribute](https://github.com/brandonhein/Hein.Swagger#group-your-controllers-with-an-attribute)
-* [Use Description and Summary Attributes](https://github.com/brandonhein/Hein.Swagger/blob/master/README.md#description-and-summary-attributes-so-long-xml-comments)
-* [Document Response Headers in Attributes](https://github.com/brandonhein/Hein.Swagger/blob/produces-headers/README.md#document-response-headers-in-your-swagger)
-* [API Versioning Documented in Swagger]()
+* [Use Description and Summary Attributes](https://github.com/brandonhein/Hein.Swagger/#description-and-summary-attributes-so-long-xml-comments)
+* [Document Response Headers in Attributes](https://github.com/brandonhein/Hein.Swagger#document-response-headers-in-your-swagger)
+* [API Versioning Documented in Swagger](https://github.com/brandonhein/Hein.Swagger#api-versioning-documented-in-swagger)
 
 ---
 
