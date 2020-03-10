@@ -6,30 +6,30 @@ namespace Hein.Swagger.Attributes
     public class ProducesHeaderAttribute : Attribute
     {
         public ProducesHeaderAttribute(string header)
-            : this(header, null, null, null)
+            : this(header, default(SwaggerType), null, null)
         { }
 
         public ProducesHeaderAttribute(string header, string description)
-            : this(header, null, null, description)
+            : this(header, default(SwaggerType), null, description)
         { }
 
         public ProducesHeaderAttribute(string header, int statusCode)
-            : this(header, null, statusCode, null)
+            : this(header, default(SwaggerType), statusCode, null)
         { }
 
         public ProducesHeaderAttribute(string header, int statusCode, string description)
-            : this(header, null, statusCode, description)
+            : this(header, default(SwaggerType), statusCode, description)
         { }
 
-        public ProducesHeaderAttribute(string header, Type valueType)
+        public ProducesHeaderAttribute(string header, SwaggerType valueType)
             : this(header, valueType, null, null)
         { }
 
-        public ProducesHeaderAttribute(string header, Type valueType, string description)
+        public ProducesHeaderAttribute(string header, SwaggerType valueType, string description)
             : this(header, valueType, null, description)
         { }
 
-        public ProducesHeaderAttribute(string header, Type valueType = null, int? statusCode = null, string description = null)
+        public ProducesHeaderAttribute(string header, SwaggerType valueType = default(SwaggerType), int? statusCode = null, string description = null)
         {
             Header = header;
             ValueType = valueType;
@@ -38,8 +38,18 @@ namespace Hein.Swagger.Attributes
         }
 
         public string Header { get; }
-        public Type ValueType { get; }
+        public SwaggerType ValueType { get; }
         public int? StatusCode { get; }
         public string Description { get; }
+    }
+
+    public enum SwaggerType
+    {
+        String,
+        Number,
+        Integer,
+        Boolean,
+        Array,
+        Object
     }
 }

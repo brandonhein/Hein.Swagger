@@ -5,7 +5,7 @@
 ![NuGet](https://img.shields.io/nuget/v/Hein.Swagger.svg?style=flat-square&label=nuget)
 
 ```xml
-<PackageReference Include="Hein.Swagger" Version="1.0.2" />
+<PackageReference Include="Hein.Swagger" Version="1.0.3" />
 ```
 
 Fun Repo to create an easier 'Swagger Gen' for api documentation
@@ -21,6 +21,7 @@ So, I added some extension methods to add to the `SwaggerGenOptions` to achieve 
 * [Group Controllers via Attribute](https://github.com/brandonhein/Hein.Swagger#group-your-controllers-with-an-attribute)
 * [Use Description and Summary Attributes](https://github.com/brandonhein/Hein.Swagger/blob/master/README.md#description-and-summary-attributes-so-long-xml-comments)
 * [Document Response Headers in Attributes](https://github.com/brandonhein/Hein.Swagger/blob/produces-headers/README.md#document-response-headers-in-your-swagger)
+* [API Versioning Documented in Swagger]()
 
 ---
 
@@ -146,8 +147,8 @@ services.AddSwaggerGen(x =>
 ```csharp
 [HttpPost]
 [Produces("application/json")]
-[ProducesHeader("x-collection-count", typeof(int), "sample response header")]
-[ProducesHeader("x-another-count", typeof(string), "another header attribute")]
+[ProducesHeader("x-collection-count", SwaggerType.Integer, "sample response header")]
+[ProducesHeader("x-another-count", "another header attribute")]
 [ProducesResponseType(typeof(SampleModel), 200)]
 public IActionResult Post([FromBody] SampleModel model)
 {
@@ -157,3 +158,44 @@ public IActionResult Post([FromBody] SampleModel model)
 ![](/.images/produces-response-headers.PNG)
 
 ---
+
+### API Versioning documented in swagger!
+API Versioning allows you to route behavior between clients.  SwaggerUI allows you to display multiple swagger docs.  I'm a Controller Version guy.  IE: A new Version gets all new/same controllers in a 'v{n}' folder, inside the controllers folder.  This works if you create new routes (don't overwrite routes).  While also managing the SwaggerVersion attribute on the controller.
+
+Implementation:  
+In the ConfigureServices Method in startup:
+```csharp
+services.AddSwaggerGen(x =>
+{
+   x.SwaggerDoc("v1", new Info {});
+   x.SwaggerDoc("v2", new Info {});
+   
+   x.EnableSwaggerVersioning(); //tells Hein.Swagger to look at the SwaggerVersion attribute on controllers
+}
+```
+In the Configure Method in startup:
+```csharp
+app.UseSwagger();
+app.UswSwaggerUI(c => 
+{
+   c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hein.Swagger.Sample - v1");
+   c.SwaggerEndpoint("/swagger/v2/swagger.json", "Hein.Swagger.Sample - v2");
+});
+```
+Controllers:
+```csharp
+[SwaggerVersion("v1")]
+[Route("sample")]
+public class SampleController : Controller
+{
+}
+
+[SwaggerVersion("v2")]
+[Route("v2/sample")]
+public class SampleV2Controller : Controller
+{
+}
+```
+
+---
+

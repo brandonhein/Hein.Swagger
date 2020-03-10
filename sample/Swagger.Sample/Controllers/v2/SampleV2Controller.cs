@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace Hein.Swagger.Sample.Controllers
+namespace Hein.Swagger.Sample.Controllers.v2
 {
-    [SwaggerVersion("v1")]
-    [SwaggerController("LookMom")]
-    [Description("look ma... no hands!")]
-    [Route("Sample")]
-    public class SampleController : Controller
+    [Version("second")]
+    [SwaggerTag("LookMom")]
+    [Route("v2/sample")]
+    public class SampleV2Controller : Controller
     {
         [HttpGet]
         [Produces("application/json")]
@@ -30,12 +29,5 @@ namespace Hein.Swagger.Sample.Controllers
         {
             return Ok(model);
         }
-    }
-
-    public class SampleModel
-    {
-        public DateTime DateTime { get; set; }
-        public string Name { get; set; }
-        public int Version { get; set; }
     }
 }

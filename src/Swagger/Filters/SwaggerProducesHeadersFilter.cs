@@ -29,7 +29,7 @@ namespace Hein.Swagger.Filters
                         {
                             response.Value.Headers.Add(actionAttr.Header, new Header()
                             {
-                                Type = actionAttr.ValueType != null ? actionAttr.ValueType.Name : string.Empty,
+                                Type = actionAttr.ValueType.ToString().ToLower(),
                                 Description = actionAttr.Description
                             });
                         }

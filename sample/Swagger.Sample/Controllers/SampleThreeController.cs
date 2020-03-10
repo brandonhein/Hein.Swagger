@@ -4,6 +4,7 @@ using System;
 
 namespace Hein.Swagger.Sample.Controllers
 {
+    [SwaggerVersion("v1")]
     [SwaggerController("LookMom")]
     [Route("Sample")]
     public class SampleThreeController : Controller
