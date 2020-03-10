@@ -34,6 +34,14 @@ namespace Hein.Swagger.Sample
                 x.SwaggerDoc("v1", new Info
                 {
                     Title = "Hein.Swagger.Sample",
+                    Version = "v1",
+                    Description = "this is the description. [this is a link like github](https://github.com/brandonhein)"
+                });
+
+                x.SwaggerDoc("second", new Info
+                {
+                    Title = "Hein.Swagger.Sample",
+                    Version = "second",
                     Description = "this is the description. [this is a link like github](https://github.com/brandonhein)"
                 });
 
@@ -41,6 +49,7 @@ namespace Hein.Swagger.Sample
                 x.EnforceHeaderKey("x-api-key", "AWS API Gateway x-api-key");
 
                 x.EnableAnnotations();
+                x.EnableSwaggerVersioning();
 
                 x.DescribeAllEnumsAsStrings();
             });
@@ -59,7 +68,10 @@ namespace Hein.Swagger.Sample
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hein.Swagger.Sample");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hein.Swagger.Sample - v1");
+                c.SwaggerEndpoint("/swagger/second/swagger.json", "Hein.Swagger.Sample - v2");
+
+                c.DisplayRequestDuration();
             });
 
             app.UseMvc(routes =>
