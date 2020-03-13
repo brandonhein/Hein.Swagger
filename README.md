@@ -5,7 +5,7 @@
 ![NuGet](https://img.shields.io/nuget/v/Hein.Swagger.svg?style=flat-square&label=nuget)
 
 ```xml
-<PackageReference Include="Hein.Swagger" Version="1.0.3" />
+<PackageReference Include="Hein.Swagger" Version="1.0.5" />
 ```
 
 Fun Repo to create an easier 'Swagger Gen' for api documentation
