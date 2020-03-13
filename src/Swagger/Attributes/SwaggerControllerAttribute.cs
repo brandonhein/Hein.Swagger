@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 
 namespace Hein.Swagger.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class SwaggerControllerAttribute : SwaggerTagAttribute
     {
         public SwaggerControllerAttribute(string groupName) : base(groupName)

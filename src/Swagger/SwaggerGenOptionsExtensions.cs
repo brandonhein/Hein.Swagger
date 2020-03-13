@@ -13,6 +13,7 @@ namespace Hein.Swagger
     {
         public static void EnforceQueryKey(this SwaggerGenOptions options, string queryName, string description = null)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             var scheme = new QueryStringSecurityScheme(queryName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
@@ -20,6 +21,7 @@ namespace Hein.Swagger
 
         public static void EnforceHeaderKey(this SwaggerGenOptions options, string headerName, string description = null)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             var scheme = new HeaderSecurityScheme(headerName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
@@ -27,6 +29,7 @@ namespace Hein.Swagger
 
         public static void EnforceCookieKey(this SwaggerGenOptions options, string cookieName, string description = null)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             var scheme = new CookieSecurityScheme(cookieName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
@@ -34,11 +37,13 @@ namespace Hein.Swagger
 
         public static void AddGithubRepository(this SwaggerGenOptions options, string githubRepositoryUrl)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.DocumentFilter<GithubRepositoryDocumentFilter>(githubRepositoryUrl);
         }
 
         public static void DescribeStatusCodes(this SwaggerGenOptions options, params HttpStatusCode[] codes)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerStatusCodeResponses>(codes);
         }
 
@@ -49,22 +54,26 @@ namespace Hein.Swagger
 
         public static void DescribeAllStatusCodes(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             var values = Enum.GetValues(typeof(HttpStatusCode)).Cast<HttpStatusCode>();
             DescribeStatusCodes(options, values.ToArray());
         }
 
         public static void DescribeRateLimitHeaders(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerRateLimitHeaders>();
         }
 
         public static void EnableControllerTags(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerControllerGroupTagOperationalFilter>();
         }
 
         public static void EnableDescriptionTags(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerDescriptionFilter>();
 
             //TODO ISSUE/FEATURE #1
@@ -73,16 +82,19 @@ namespace Hein.Swagger
 
         public static void EnableProducesHeaderTags(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerProducesHeadersFilter>();
         }
 
         public static void EnableSummaryTags(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerSummaryFilter>();
         }
 
         public static void EnableAnnotations(this SwaggerGenOptions options)
         {
+            options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             EnableControllerTags(options);
             EnableDescriptionTags(options);
             EnableSummaryTags(options);
@@ -95,12 +107,21 @@ namespace Hein.Swagger
 
             options.DocInclusionPredicate((version, desc) =>
             {
-                var versions = desc.ControllerAttributes()
-                    .OfType<SwaggerVersionAttribute>()
-                    .SelectMany(attr => attr.Version)
-                    .ToArray();
+                var versionsAttrs = desc.ControllerAttributes()
+                    .OfType<SwaggerVersionAttribute>();
 
-                return new string(versions) == version;
+                if (versionsAttrs != null && versionsAttrs.Any())
+                {
+                    foreach (var versionAttr in versionsAttrs)
+                    {
+                        if (versionAttr.Version.Equals(version, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
             });
         }
     }
