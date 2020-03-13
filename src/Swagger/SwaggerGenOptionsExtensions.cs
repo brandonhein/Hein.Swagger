@@ -95,12 +95,21 @@ namespace Hein.Swagger
 
             options.DocInclusionPredicate((version, desc) =>
             {
-                var versions = desc.ControllerAttributes()
-                    .OfType<SwaggerVersionAttribute>()
-                    .SelectMany(attr => attr.Version)
-                    .ToArray();
+                var versionsAttrs = desc.ControllerAttributes()
+                    .OfType<SwaggerVersionAttribute>();
 
-                return new string(versions) == version;
+                if (versionsAttrs != null && versionsAttrs.Any())
+                {
+                    foreach (var versionAttr in versionsAttrs)
+                    {
+                        if (versionAttr.Version.Equals(version, StringComparison.OrdinalIgnoreCase))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
             });
         }
     }
