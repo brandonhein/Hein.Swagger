@@ -20,7 +20,7 @@ namespace Hein.Swagger.Filters
                 swaggerDoc.SecurityDefinitions = new Dictionary<string, SecurityScheme>();
             }
 
-            swaggerDoc.SecurityDefinitions.Add(_scheme.Name, _scheme);
+            swaggerDoc.SecurityDefinitions.Add(_scheme.Name.Replace("-", ""), _scheme);
 
             if (swaggerDoc.Security == null)
             {
@@ -29,7 +29,7 @@ namespace Hein.Swagger.Filters
 
             var securities = new List<IDictionary<string, IEnumerable<string>>>();
             var enforcer = new Dictionary<string, IEnumerable<string>>();
-            enforcer.Add(_scheme.Name, new List<string>());
+            enforcer.Add(_scheme.Name.Replace("-", ""), new List<string>());
             securities.Add(enforcer);
             foreach (var security in securities)
             {
