@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Hein.Swagger.Attributes
 {
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class SwaggerSummaryAttribute : Attribute
     {
         public SwaggerSummaryAttribute(string summary)
@@ -15,6 +13,7 @@ namespace Hein.Swagger.Attributes
         public string Summary { get; }
     }
 
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class SummaryAttribute : SwaggerSummaryAttribute
     {
         public SummaryAttribute(string summary) : base(summary)
