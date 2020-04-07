@@ -1,5 +1,5 @@
 ﻿using Hein.Swagger.Attributes;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace Hein.Swagger.Filters
 {
     public class SwaggerProducesHeadersFilter : IOperationFilter
     {
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             var actionAttrs = context.ApiDescription.ActionAttributes()
                 .OfType<ProducesHeaderAttribute>();
@@ -21,15 +21,15 @@ namespace Hein.Swagger.Filters
                     {
                         if (response.Value.Headers == null)
                         {
-                            response.Value.Headers = new Dictionary<string, Header>();
+                            response.Value.Headers = new Dictionary<string, OpenApiHeader>();
                         }
 
                         if (!actionAttr.StatusCode.HasValue || 
                             (actionAttr.StatusCode.HasValue && actionAttr.StatusCode.Value.ToString() == response.Key))
                         {
-                            response.Value.Headers.Add(actionAttr.Header, new Header()
+                            response.Value.Headers.Add(actionAttr.Header, new OpenApiHeader()
                             {
-                                Type = actionAttr.ValueType.ToString().ToLower(),
+                                //Type = actionAttr.ValueType.ToString().ToLower(),
                                 Description = actionAttr.Description
                             });
                         }

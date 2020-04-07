@@ -1,5 +1,6 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
+﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 
 namespace Hein.Swagger.Filters
 {
@@ -11,12 +12,12 @@ namespace Hein.Swagger.Filters
             _repositoryUrl = repositoryUrl;
         }
 
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            swaggerDoc.ExternalDocs = new ExternalDocs()
+            swaggerDoc.ExternalDocs = new OpenApiExternalDocs()
             {
                 Description = "GitHub Repository",
-                Url = _repositoryUrl
+                Url = new Uri(_repositoryUrl)
             };
         }
     }

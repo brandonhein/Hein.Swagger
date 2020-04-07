@@ -1,4 +1,5 @@
 ﻿using Hein.Swagger.Attributes;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace Hein.Swagger.Filters
 {
     public class SwaggerSummaryFilter : IOperationFilter
     {
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             var actionAttr = context.ApiDescription.ActionAttributes()
                 .OfType<SwaggerSummaryAttribute>().FirstOrDefault();

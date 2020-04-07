@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
+﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Linq;
 using System.Net;
@@ -13,14 +14,14 @@ namespace Hein.Swagger.Filters
             _codes = codes.Distinct().ToArray();
         }
 
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             foreach (var code in _codes)
             {
                 var codeNumber = (int)code;
                 try
                 {
-                    operation.Responses.Add(codeNumber.ToString(), new Response() { Description = code.ToString() });
+                    operation.Responses.Add(codeNumber.ToString(), new OpenApiResponse() { Description = code.ToString() });
                 }
                 catch { }
             }

@@ -29,5 +29,10 @@ namespace Hein.Swagger
         {
             return app.UseMiddleware<XResponseTimeMiddleware>();
         }
+
+        public static IApplicationBuilder UseLegacySwagger(this IApplicationBuilder app)
+        {
+            return app.UseSwagger(c => c.SerializeAsV2 = true);
+        }
     }
 }

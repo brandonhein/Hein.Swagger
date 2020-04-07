@@ -4,7 +4,7 @@
     {
         public CookieSecurityScheme(string name, string description = null) : base(name, description)
         {
-            In = "cookie";
+            In = Microsoft.OpenApi.Models.ParameterLocation.Cookie;
         }
     }
 }

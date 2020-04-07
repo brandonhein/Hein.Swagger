@@ -1,4 +1,6 @@
-﻿namespace Hein.Swagger.Security.Keys
+﻿using Microsoft.OpenApi.Models;
+
+namespace Hein.Swagger.Security.Keys
 {
     public abstract class ApiKeySchemeBase : SecuritySchemeBase
     {
@@ -6,9 +8,9 @@
         {
             base.Name = name;
             base.Description = description;
-            base.Type = "apiKey";
+            base.Type = SecuritySchemeType.ApiKey;
         }
 
-        public string In { get; set; }
+        public ParameterLocation In { get; set; }
     }
 }
