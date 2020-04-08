@@ -18,6 +18,9 @@ namespace Hein.Swagger.Middleware
             {
                 var httpContext = (HttpContext)state;
                 httpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                httpContext.Response.Headers.Add("Access-Control-Allow-Methods", "*");
+                httpContext.Response.Headers.Add("Access-Control-Allow-Headers", "*");
+                httpContext.Response.Headers.Add("Access-Control-Max-Age", "86400");
                 return Task.FromResult(0);
             }, context);
 

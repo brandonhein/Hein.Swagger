@@ -1,7 +1,8 @@
 ﻿using Hein.Swagger.Security;
-using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hein.Swagger.Filters
 {
@@ -11,29 +12,35 @@ namespace Hein.Swagger.Filters
         public SwaggerSecurityDocumentFilter(SecuritySchemeBase scheme)
         {
             _scheme = scheme;
+            _scheme.Name = _scheme.Name.Replace("-", "");
         }
 
-        public void Apply(SwaggerDocument swaggerDoc, DocumentFilterContext context)
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            if (swaggerDoc.SecurityDefinitions == null)
+            swaggerDoc.SecurityRequirements = new List<OpenApiSecurityRequirement>();
+
+            var requirement = new OpenApiSecurityRequirement()
             {
-                swaggerDoc.SecurityDefinitions = new Dictionary<string, SecurityScheme>();
+                [_scheme] = new List<string>() { _scheme.Name.Replace("-", "") }
+            };
+
+            if (!swaggerDoc.SecurityRequirements.Any(x => x.Equals(requirement)))
+            {
+                swaggerDoc.SecurityRequirements.Add(requirement);
             }
 
-            swaggerDoc.SecurityDefinitions.Add(_scheme.Name.Replace("-", ""), _scheme);
-
-            if (swaggerDoc.Security == null)
+            if (swaggerDoc.Components == null)
             {
-                swaggerDoc.Security = new List<IDictionary<string, IEnumerable<string>>>();
+                swaggerDoc.Components = new OpenApiComponents();
+            }
+            if (swaggerDoc.Components.SecuritySchemes == null)
+            {
+                swaggerDoc.Components.SecuritySchemes = new Dictionary<string, OpenApiSecurityScheme>();
             }
 
-            var securities = new List<IDictionary<string, IEnumerable<string>>>();
-            var enforcer = new Dictionary<string, IEnumerable<string>>();
-            enforcer.Add(_scheme.Name.Replace("-", ""), new List<string>());
-            securities.Add(enforcer);
-            foreach (var security in securities)
+            if (!swaggerDoc.Components.SecuritySchemes.ContainsKey(_scheme.Name.Replace("-", "")))
             {
-                swaggerDoc.Security.Add(security);
+                swaggerDoc.Components.SecuritySchemes.Add(_scheme.Name.Replace("-", ""), _scheme);
             }
         }
     }

@@ -1,9 +1,9 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
+﻿using Microsoft.OpenApi.Models;
 
 namespace Hein.Swagger.Security
 {
-    public abstract class SecuritySchemeBase : SecurityScheme
+    public abstract class SecuritySchemeBase : OpenApiSecurityScheme
     {
-        public string Name { get; set; }
+        
     }
 }

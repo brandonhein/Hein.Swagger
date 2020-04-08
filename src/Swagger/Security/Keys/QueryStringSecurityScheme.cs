@@ -4,7 +4,7 @@
     {
         public QueryStringSecurityScheme(string name, string description = null) : base(name, description)
         {
-            base.In = "query";
+            base.In = Microsoft.OpenApi.Models.ParameterLocation.Query;
         }
     }
 }

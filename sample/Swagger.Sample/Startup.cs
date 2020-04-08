@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Net;
 using System.Collections.Generic;
 using Hein.Swagger.Middleware;
+using Microsoft.OpenApi.Models;
 
 namespace Hein.Swagger.Sample
 {
@@ -65,7 +66,7 @@ namespace Hein.Swagger.Sample
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
+            app.UseLegacySwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hein.Swagger.Sample - v1");
