@@ -2,8 +2,10 @@
 using Hein.Swagger.Filters;
 using Hein.Swagger.Security.Keys;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
@@ -14,7 +16,7 @@ namespace Hein.Swagger
         public static void EnforceQueryKey(this SwaggerGenOptions options, string queryName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new QueryStringSecurityScheme(queryName, description);
+            var scheme = new QueryStringSecurityScheme(queryName.Replace("-", ""), description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
@@ -22,7 +24,7 @@ namespace Hein.Swagger
         public static void EnforceHeaderKey(this SwaggerGenOptions options, string headerName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new HeaderSecurityScheme(headerName, description);
+            var scheme = new HeaderSecurityScheme(headerName.Replace("-", ""), description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
@@ -30,7 +32,7 @@ namespace Hein.Swagger
         public static void EnforceCookieKey(this SwaggerGenOptions options, string cookieName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new CookieSecurityScheme(cookieName, description);
+            var scheme = new CookieSecurityScheme(cookieName.Replace("-", ""), description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }

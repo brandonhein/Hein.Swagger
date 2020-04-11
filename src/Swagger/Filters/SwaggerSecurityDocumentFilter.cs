@@ -12,7 +12,6 @@ namespace Hein.Swagger.Filters
         public SwaggerSecurityDocumentFilter(SecuritySchemeBase scheme)
         {
             _scheme = scheme;
-            _scheme.Name = _scheme.Name.Replace("-", "");
         }
 
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
@@ -21,7 +20,7 @@ namespace Hein.Swagger.Filters
 
             var requirement = new OpenApiSecurityRequirement()
             {
-                [_scheme] = new List<string>() { _scheme.Name.Replace("-", "") }
+                [_scheme] = new List<string>()
             };
 
             if (!swaggerDoc.SecurityRequirements.Any(x => x.Equals(requirement)))
@@ -33,14 +32,15 @@ namespace Hein.Swagger.Filters
             {
                 swaggerDoc.Components = new OpenApiComponents();
             }
+
             if (swaggerDoc.Components.SecuritySchemes == null)
             {
                 swaggerDoc.Components.SecuritySchemes = new Dictionary<string, OpenApiSecurityScheme>();
             }
 
-            if (!swaggerDoc.Components.SecuritySchemes.ContainsKey(_scheme.Name.Replace("-", "")))
+            if (!swaggerDoc.Components.SecuritySchemes.ContainsKey(_scheme.Name))
             {
-                swaggerDoc.Components.SecuritySchemes.Add(_scheme.Name.Replace("-", ""), _scheme);
+                swaggerDoc.Components.SecuritySchemes.Add(_scheme.Name, _scheme);
             }
         }
     }

@@ -18,12 +18,6 @@ namespace Hein.Swagger.Filters
         {
             operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
             operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
-
-            //var security = new List<Dictionary<string, IEnumerable<string>>>();
-            //security.Add(new Dictionary<string, IEnumerable<string>>()
-            //{
-            //    { _scheme.Type, new List<string>() }
-            //});
         }
     }
 }
