@@ -9,7 +9,7 @@
 <PackageReference Include="Hein.Swagger" Version="1.0.5" />
 
 <!-- if netcoreapp3.* use -->
-<PackageReference Include="Hein.Swagger" Version="2.0.0" />
+<PackageReference Include="Hein.Swagger" Version="2.0.1" />
 ```
 
 Fun Repo to create an easier 'Swagger Gen' for api documentation
@@ -19,13 +19,13 @@ I wanted to create some helper/extensions/add on's to the awesomeness of [Swagge
 So, I added some extension methods to add to the `SwaggerGenOptions` to achieve what 'I' think should be called.  I also added some Attributes/tags to add to your controllers, that will include/exclude from your swagger generation.
 
 ## IMPORTANT! Major Version Update
-1.0.5 => 2.0.0  
+1.0.5 => 2.0.1  
 With NetCore 3.1 being supported by AWS lambda now... I wanted to upgrade my apps to the new supported version.  By doing so everything I've created for this swagger helper is obsolete... so had to so a major overhaul renaming some classes to make interfaces work and so forth.  
 
 | Hein.Swagger | Swagger Versions | NetCore Versions |
 | --- | --- | --- |
 | 1.0.5 | Swagger V2 | netcoreapp2.* |
-| 2.0.0 | Swagger V3 | netcoreapp3.* |
+| 2.0.1 | Swagger V3 | netcoreapp3.* |
 
 # Cool Shiz!
 * [Adding a GitHub Repo Link](https://github.com/brandonhein/Hein.Swagger#add-github-repository-url)
