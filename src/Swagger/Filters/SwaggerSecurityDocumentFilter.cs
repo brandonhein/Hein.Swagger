@@ -38,9 +38,9 @@ namespace Hein.Swagger.Filters
                 swaggerDoc.Components.SecuritySchemes = new Dictionary<string, OpenApiSecurityScheme>();
             }
 
-            if (!swaggerDoc.Components.SecuritySchemes.ContainsKey(_scheme.Name))
+            if (!swaggerDoc.Components.SecuritySchemes.ContainsKey(_scheme.Name.Replace("-", "")))
             {
-                swaggerDoc.Components.SecuritySchemes.Add(_scheme.Name, _scheme);
+                swaggerDoc.Components.SecuritySchemes.Add(_scheme.Name.Replace("-", ""), _scheme);
             }
         }
     }

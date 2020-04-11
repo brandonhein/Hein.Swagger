@@ -9,7 +9,7 @@ namespace Hein.Swagger.Security.Keys
             base.Reference = new OpenApiReference()
             {
                 Type = ReferenceType.SecurityScheme,
-                Id = name
+                Id = name.Replace("-", "")
             };
             base.Name = name;
             base.Description = description;
