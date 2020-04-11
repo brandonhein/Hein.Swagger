@@ -16,7 +16,7 @@ namespace Hein.Swagger
         public static void EnforceQueryKey(this SwaggerGenOptions options, string queryName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new QueryStringSecurityScheme(queryName.Replace("-", ""), description);
+            var scheme = new QueryStringSecurityScheme(queryName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
@@ -24,7 +24,7 @@ namespace Hein.Swagger
         public static void EnforceHeaderKey(this SwaggerGenOptions options, string headerName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new HeaderSecurityScheme(headerName.Replace("-", ""), description);
+            var scheme = new HeaderSecurityScheme(headerName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
@@ -32,7 +32,7 @@ namespace Hein.Swagger
         public static void EnforceCookieKey(this SwaggerGenOptions options, string cookieName, string description = null)
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
-            var scheme = new CookieSecurityScheme(cookieName.Replace("-", ""), description);
+            var scheme = new CookieSecurityScheme(cookieName, description);
             options.DocumentFilter<SwaggerSecurityDocumentFilter>(scheme);
             options.OperationFilter<SwaggerSecurityOperationalFilter>(scheme);
         }
