@@ -9,7 +9,7 @@
 <PackageReference Include="Hein.Swagger" Version="1.0.5" />
 
 <!-- if netcoreapp3.* use -->
-<PackageReference Include="Hein.Swagger" Version="2.0.2" />
+<PackageReference Include="Hein.Swagger" Version="3.0.0" />
 ```
 
 Fun Repo to create an easier 'Swagger Gen' for api documentation
@@ -25,7 +25,7 @@ With NetCore 3.1 being supported by AWS lambda now... I wanted to upgrade my app
 | Hein.Swagger | Swagger Versions | NetCore Versions |
 | --- | --- | --- |
 | 1.0.5 | Swagger V2 | netcoreapp2.* |
-| 2.0.2 | Swagger V3 | netcoreapp3.* |
+| 3.0.0 | Swagger V3 | netcoreapp3.* |
 
 # Cool Shiz!
 * [Adding a GitHub Repo Link](https://github.com/brandonhein/Hein.Swagger#add-github-repository-url)
@@ -60,9 +60,9 @@ Implementation:
 ```csharp
 services.AddSwaggerGen(x =>
 {
-   x.EnforceHeaderKey("apiKey", "Your Header Access Key");
-   x.EnforceQueryKey("queryKey", "Your Query Access Key");
-   x.EnforceCookieKey("cookieKey", "Your Cookie Access Key");
+   x.AddHeaderKey("apiKey", "Your Header Access Key");
+   x.AddQueryKey("queryKey", "Your Query Access Key");
+   x.AddCookieKey("cookieKey", "Your Cookie Access Key");
 }
 ```
 ![](/.images/enforce-api-key2.PNG)  
