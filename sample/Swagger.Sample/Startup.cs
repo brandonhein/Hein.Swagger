@@ -3,11 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Swashbuckle.AspNetCore.Swagger;
-using System.Net;
-using System.Collections.Generic;
-using Hein.Swagger.Middleware;
-using Microsoft.OpenApi.Models;
+using Hein.Swagger.Security;
 
 namespace Hein.Swagger.Sample
 {
@@ -47,7 +43,12 @@ namespace Hein.Swagger.Sample
                 });
 
                 x.AddGithubRepository("https://github.com/brandonhein/Hein.Swagger");
-                x.EnforceHeaderKey("x-api-key", "AWS API Gateway x-api-key");
+                //x.AddHeaderKey("x-api-key", "AWS API Gateway x-api-key");
+
+                x.AddOAuthClientCredentialsAuthentication("Ping Federate", new OAuthClientCredentialsFlowDetail()
+                {
+                    TokenUrl = new System.Uri("https://auth")
+                });
 
                 x.EnableAnnotations();
                 x.EnableSwaggerVersioning();
