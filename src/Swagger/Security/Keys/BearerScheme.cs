@@ -2,18 +2,21 @@
 
 namespace Hein.Swagger.Security.Keys
 {
-    public abstract class ApiKeySchemeBase : SecuritySchemeBase
+    public class BearerScheme : SecuritySchemeBase
     {
-        protected ApiKeySchemeBase(string name, string description = null)
+        public BearerScheme(string name, string description = null)
         {
             base.Reference = new OpenApiReference()
             {
                 Type = ReferenceType.SecurityScheme,
                 Id = name.Replace("-", "")
             };
+
             base.Name = name;
             base.Description = description;
-            base.Type = SecuritySchemeType.ApiKey;
+            base.Type = SecuritySchemeType.Http;
+            base.Scheme = "bearer";
+            base.BearerFormat = "JWT";
         }
     }
 }
