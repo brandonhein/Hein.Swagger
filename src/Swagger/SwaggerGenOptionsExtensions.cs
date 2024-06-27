@@ -50,9 +50,7 @@ namespace Hein.Swagger
         {
             options.OperationFilter<SwaggerUniqueOperationIdFilter>();
             options.OperationFilter<SwaggerDescriptionFilter>();
-
-            //TODO ISSUE/FEATURE #1
-            //options.DocumentFilter<SwaggerControllerDescriptionFilter>();
+            options.ParameterFilter<SwaggerDescriptionFilter>();
         }
 
         public static void EnableProducesHeaderTags(this SwaggerGenOptions options)
@@ -74,6 +72,21 @@ namespace Hein.Swagger
             EnableDescriptionTags(options);
             EnableSummaryTags(options);
             EnableProducesHeaderTags(options);
+            EnableOrderTags(options);
+        }
+
+        public static void EnableOrderTags(this SwaggerGenOptions options)
+        {
+            options.DocumentFilter<SwaggerOrderDocumentFilter>();
+
+            options.OrderActionsBy(x =>
+            {
+                var actionOrder = x.ActionAttributes().OfType<SwaggerOrderAttribute>().FirstOrDefault();
+                if (actionOrder == null)
+                    actionOrder = new SwaggerOrderAttribute(int.MaxValue);
+            
+                return $"{actionOrder.Order.ToString("0000000000")}";
+            });
         }
 
         public static void EnableSwaggerVersioning(this SwaggerGenOptions options)

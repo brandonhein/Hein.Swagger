@@ -2,7 +2,7 @@
 
 namespace Hein.Swagger.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter, AllowMultiple = false)]
     public class SwaggerDescriptionAttribute : Attribute
     {
         public SwaggerDescriptionAttribute(string description)
@@ -13,7 +13,7 @@ namespace Hein.Swagger.Attributes
         public string Description { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Parameter, AllowMultiple = false)]
     public class DescriptionAttribute : SwaggerDescriptionAttribute
     {
         public DescriptionAttribute(string description) : base(description)

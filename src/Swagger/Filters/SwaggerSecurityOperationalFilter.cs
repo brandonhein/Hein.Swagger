@@ -1,8 +1,6 @@
 ﻿using Hein.Swagger.Security;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Collections.Generic;
 
 namespace Hein.Swagger.Filters
 {
@@ -16,8 +14,11 @@ namespace Hein.Swagger.Filters
 
         public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
-            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
-            operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
+            if (!operation.Responses.ContainsKey("401"))
+                operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
+
+            if (!operation.Responses.ContainsKey("403"))
+                operation.Responses.Add("403", new OpenApiResponse { Description = "Forbidden" });
         }
     }
 }
