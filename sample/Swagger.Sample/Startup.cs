@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Hein.Swagger.Security;
+using Hein.Swagger.Filters;
 
 namespace Hein.Swagger.Sample
 {
@@ -22,6 +23,7 @@ namespace Hein.Swagger.Sample
             services.AddMvc();
             services.AddMvc(options =>
             {
+                options.EnableEndpointRouting = false;
                 options.InputFormatters.Add(new XmlSerializerInputFormatter(options));
                 options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             });
@@ -35,13 +37,6 @@ namespace Hein.Swagger.Sample
                     Description = "this is the description. [this is a link like github](https://github.com/brandonhein)"
                 });
 
-                x.SwaggerDoc("second", new Info
-                {
-                    Title = "Hein.Swagger.Sample",
-                    Version = "second",
-                    Description = "this is the description. [this is a link like github](https://github.com/brandonhein)"
-                });
-
                 x.AddGithubRepository("https://github.com/brandonhein/Hein.Swagger");
                 //x.AddHeaderKey("x-api-key", "AWS API Gateway x-api-key");
 
@@ -51,9 +46,7 @@ namespace Hein.Swagger.Sample
                 });
 
                 x.EnableAnnotations();
-                x.EnableSwaggerVersioning();
-
-                x.DescribeAllEnumsAsStrings();
+                //x.EnableSwaggerVersioning();
             });
         }
 
@@ -71,7 +64,8 @@ namespace Hein.Swagger.Sample
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Hein.Swagger.Sample - v1");
-                c.SwaggerEndpoint("/swagger/second/swagger.json", "Hein.Swagger.Sample - v2");
+
+                c.EnableFilter();
 
                 c.DisplayRequestDuration();
             });
